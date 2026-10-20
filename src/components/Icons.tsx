@@ -89,3 +89,40 @@ export function CloseIcon(props: IconProps) {
     </Svg>
   );
 }
+
+export function ClockIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 2" />
+    </Svg>
+  );
+}
+
+export function TruckIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M3 6h11v10H3zM14 9.5h4l3 3.5v3h-7" />
+      <circle cx="7" cy="17.5" r="1.8" />
+      <circle cx="17.5" cy="17.5" r="1.8" />
+    </Svg>
+  );
+}
+
+export function InstagramIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" />
+    </Svg>
+  );
+}
+
+export function ChevronDownIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M6 9l6 6 6-6" />
+    </Svg>
+  );
+}

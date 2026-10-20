@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import CategoryCard from "@/components/CategoryCard";
 import HeroPetals from "@/components/HeroPetals";
-import { ArrowIcon, BagIcon, FlowerIcon, MessageIcon, SearchIcon } from "@/components/Icons";
+import { ArrowIcon, BagIcon, ChevronDownIcon, FlowerIcon, MessageIcon, SearchIcon } from "@/components/Icons";
+import JsonLd from "@/components/JsonLd";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { categories, getImages } from "@/lib/categories";
-import { site, whatsappLink } from "@/lib/site";
+import { faqSchema } from "@/lib/seo";
+import { faqs, site, whatsappLink } from "@/lib/site";
 
 const featured = ["bouquets", "bridal-bouquet", "pedestals", "arch-flowers", "center-pieces", "burial-flowers"];
 
@@ -22,7 +24,7 @@ const steps = [
   { title: "Browse", text: "Look through our gallery and pick the styles you love.", Icon: SearchIcon },
   { title: "Message us", text: "Send a photo or describe what you want on WhatsApp or SMS.", Icon: MessageIcon },
   { title: "We create", text: "We confirm the details and price, then make it fresh for you.", Icon: FlowerIcon },
-  { title: "Collect", text: "Pick up at City Market, or ask us about delivery to your event.", Icon: BagIcon },
+  { title: "Delivered", text: "We deliver anywhere in Kenya, or collect from our shop at City Market.", Icon: BagIcon },
 ];
 
 const occasions = ["Weddings", "Birthdays", "Corporate events", "Anniversaries", "Valentine's", "Sympathy"];
@@ -56,7 +58,8 @@ export default function Home() {
             Every occasion deserves a touch of <em className="font-medium text-gold-light">nature&apos;s elegance.</em>
           </h1>
           <p className="mt-6 max-w-xl animate-[rise_0.8s_0.2s_ease-out_both] text-lg leading-relaxed text-cream/85">
-            Bouquets, bridal flowers, event decor and sympathy arrangements, hand-made at {site.location}.
+            Bouquets, bridal flowers, event decor and sympathy arrangements, hand-made at {site.location}. From{" "}
+            {site.priceFrom}, delivered anywhere in Kenya.
           </p>
           <div className="mt-10 flex animate-[rise_0.8s_0.3s_ease-out_both] flex-wrap gap-3 sm:gap-4">
             <a
@@ -194,6 +197,25 @@ export default function Home() {
             ))}
           </ol>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-4 pt-20 sm:px-6 md:pt-24">
+        <div className="text-center">
+          <p className="eyebrow">Good to know</p>
+          <h2 className="mt-2 font-serif text-4xl font-semibold md:text-5xl">Frequently asked questions</h2>
+        </div>
+        <div className="mt-10 divide-y divide-gold/25 border-y border-gold/25">
+          {faqs.map((f) => (
+            <details key={f.q} className="group py-5">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <ChevronDownIcon className="h-5 w-5 shrink-0 text-rose transition-transform duration-300 group-open:rotate-180" />
+              </summary>
+              <p className="mt-3 leading-relaxed text-ink-soft">{f.a}</p>
+            </details>
+          ))}
+        </div>
+        <JsonLd data={faqSchema} />
       </section>
 
       <section className="px-4 py-20 sm:px-6 md:py-24">

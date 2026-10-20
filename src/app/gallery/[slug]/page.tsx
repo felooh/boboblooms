@@ -3,9 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Gallery from "@/components/Gallery";
 import { ChevronIcon } from "@/components/Icons";
+import JsonLd from "@/components/JsonLd";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
-import { categories, getCategory, getImages } from "@/lib/categories";
-import { whatsappLink } from "@/lib/site";
+import { categories, getCategory, getCover, getImages } from "@/lib/categories";
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
+import { site, whatsappLink } from "@/lib/site";
 
 export function generateStaticParams() {
   return categories.map((c) => ({ slug: c.slug }));
@@ -17,7 +19,12 @@ export async function generateMetadata({ params }: PageProps<"/gallery/[slug]">)
   const { slug } = await params;
   const category = getCategory(slug);
   if (!category) return {};
-  return { title: category.title, description: category.blurb };
+  return pageMetadata({
+    title: category.seoTitle,
+    description: `${category.blurb} Made at ${site.location}, from ${site.priceFrom}, delivered anywhere in Kenya.`,
+    path: `/gallery/${slug}`,
+    image: getCover(slug),
+  });
 }
 
 export default async function CategoryPage({ params }: PageProps<"/gallery/[slug]">) {
@@ -43,7 +50,7 @@ export default async function CategoryPage({ params }: PageProps<"/gallery/[slug
             {images.length > 0 && <span className="text-ink-soft"> · {images.length} photos</span>}
           </p>
           <h1 className="mt-2 font-serif text-4xl font-semibold sm:text-5xl">{category.title}</h1>
-          <p className="mt-3 max-w-xl text-ink-soft">{category.blurb}</p>
+          <p className="mt-3 max-w-2xl leading-relaxed text-ink-soft">{category.intro}</p>
         </div>
         <a
           href={whatsappLink(`Hello Bobo Blooms 👋\nI'm interested in ${category.title.toLowerCase()}.`)}
@@ -63,6 +70,13 @@ export default async function CategoryPage({ params }: PageProps<"/gallery/[slug
           Photos coming soon. Message us on WhatsApp to see recent work.
         </p>
       )}
+
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Gallery", path: "/gallery" },
+          { name: category.title, path: `/gallery/${slug}` },
+        ])}
+      />
     </div>
   );
 }

@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import CategoryCard from "@/components/CategoryCard";
 import { categories } from "@/lib/categories";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Gallery",
-  description: "Browse Bobo Blooms bouquets, bridal flowers, pedestals, arches, backdrops, centre pieces and more.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Flower & Wedding Decor Gallery",
+  description:
+    "Photos of real bouquets, bridal flowers, pedestals, arches, backdrops, centrepieces and funeral wreaths made by Bobo Blooms in Nairobi.",
+  path: "/gallery",
+});
 
 const groups = ["Wedding Decor", "Flowers"] as const;
 

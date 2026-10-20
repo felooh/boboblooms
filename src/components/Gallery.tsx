@@ -53,7 +53,7 @@ export default function Gallery({ images, title }: { images: string[]; title: st
           >
             <Image
               src={src}
-              alt={`${title} by Bobo Blooms, photo ${i + 1}`}
+              alt={`${title} by Bobo Blooms, florist in Nairobi, photo ${i + 1}`}
               fill
               sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -99,7 +99,7 @@ export default function Gallery({ images, title }: { images: string[]; title: st
             <Image
               key={current}
               src={current}
-              alt={`${title} by Bobo Blooms`}
+              alt={`${title} by Bobo Blooms, florist in Nairobi`}
               fill
               sizes="100vw"
               className="animate-[fade-in_0.25s_ease-out] object-contain"

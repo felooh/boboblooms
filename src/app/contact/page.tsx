@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { PhoneIcon, PinIcon } from "@/components/Icons";
+import { ClockIcon, InstagramIcon, PhoneIcon, PinIcon, TruckIcon } from "@/components/Icons";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
+import { pageMetadata } from "@/lib/seo";
 import { site, whatsappLink } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: `Visit Bobo Blooms at ${site.location} or reach us on WhatsApp or SMS at ${site.phoneDisplay}.`,
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Contact & Opening Hours",
+  description: `Visit Bobo Blooms at ${site.location}, ${site.hours.short}. Order on WhatsApp or call ${site.phoneDisplay}. ${site.delivery}.`,
+  path: "/contact",
+});
+
+const details = [
+  { Icon: ClockIcon, title: "Opening hours", text: `${site.hours.days}, 7am to 7pm` },
+  { Icon: TruckIcon, title: "Delivery", text: `${site.delivery}. Collection from City Market too.` },
+  { Icon: InstagramIcon, title: "Instagram", text: site.instagramHandle, href: site.instagram },
+];
 
 export default function ContactPage() {
   return (
@@ -69,6 +77,24 @@ export default function ContactPage() {
           </a>
         </div>
       </div>
+
+      <ul className="mt-6 grid gap-4 sm:grid-cols-3">
+        {details.map(({ Icon, title, text, href }) => (
+          <li key={title} className="flex items-start gap-4 rounded-2xl border border-gold/25 p-5">
+            <Icon className="mt-0.5 h-6 w-6 shrink-0 text-rose" />
+            <div>
+              <h2 className="font-bold">{title}</h2>
+              {href ? (
+                <a href={href} target="_blank" rel="noopener noreferrer" className="text-sm text-rose hover:underline">
+                  {text}
+                </a>
+              ) : (
+                <p className="text-sm text-ink-soft">{text}</p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
 
       <figure className="mt-12 overflow-hidden rounded-2xl">
         <Image

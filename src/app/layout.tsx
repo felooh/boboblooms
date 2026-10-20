@@ -3,7 +3,9 @@ import { Cormorant_Garamond, Lato } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import JsonLd from "@/components/JsonLd";
 import MashujaaPopup from "@/components/MashujaaPopup";
+import { floristSchema, pageMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -19,18 +21,15 @@ const lato = Lato({
   weight: ["300", "400", "700"],
 });
 
+const defaultTitle = `${site.name} | Florist in Nairobi for Flowers, Wedding & Event Decor`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name} | Flowers & Event Decor at ${site.location}`,
-    template: `%s | ${site.name}`,
-  },
-  description:
-    "Bouquets, bridal flowers, wedding and event decor, and sympathy flowers from Bobo Blooms at City Market. Order on WhatsApp.",
-  openGraph: {
-    siteName: site.name,
-    images: ["/images/og.jpg"],
-  },
+  ...pageMetadata({
+    description: `Florist at ${site.location}. Bouquets, bridal flowers, wedding and event decor, and funeral wreaths from ${site.priceFrom}, delivered anywhere in Kenya. Order on WhatsApp.`,
+    path: "/",
+  }),
+  title: { default: defaultTitle, template: `%s | ${site.name}` },
 };
 
 export default function RootLayout({
@@ -39,13 +38,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-KE">
       <body className={`${cormorant.variable} ${lato.variable} font-sans antialiased`}>
         <Header />
         <main>{children}</main>
         <Footer />
         <FloatingWhatsApp />
         <MashujaaPopup />
+        <JsonLd data={floristSchema} />
       </body>
     </html>
   );

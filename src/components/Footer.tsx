@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PhoneIcon, PinIcon } from "./Icons";
+import { ClockIcon, InstagramIcon, PhoneIcon, PinIcon, TruckIcon } from "./Icons";
 import Logo from "./Logo";
 import { categories } from "@/lib/categories";
 import { site, whatsappLink } from "@/lib/site";
@@ -40,6 +40,20 @@ export default function Footer() {
             <PhoneIcon className="h-4 w-4 text-gold" />
             <a href={`tel:+${site.phoneIntl}`} className="hover:text-gold-light">
               {site.phoneDisplay}
+            </a>
+          </p>
+          <p className="mt-2 flex items-center gap-2 text-sm">
+            <ClockIcon className="h-4 w-4 text-gold" />
+            {site.hours.short}
+          </p>
+          <p className="mt-2 flex items-center gap-2 text-sm">
+            <TruckIcon className="h-4 w-4 text-gold" />
+            Delivery anywhere in Kenya
+          </p>
+          <p className="mt-2 flex items-center gap-2 text-sm">
+            <InstagramIcon className="h-4 w-4 text-gold" />
+            <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-gold-light">
+              {site.instagramHandle}
             </a>
           </p>
           <a

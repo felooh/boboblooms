@@ -1,14 +1,16 @@
 import Link from "next/link";
+import { PhoneIcon, PinIcon } from "./Icons";
+import Logo from "./Logo";
 import { categories } from "@/lib/categories";
 import { site, whatsappLink } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-cream/80">
+    <footer className="border-t-4 border-rose bg-ink text-cream/80">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3">
         <div>
-          <p className="font-serif text-3xl text-gold-light">Bobo Blooms</p>
-          <p className="mt-1 text-xs uppercase tracking-[0.25em] text-cream/50">{site.tagline}</p>
+          <Logo />
+          <p className="mt-4 text-xs tracking-[0.25em] text-blush/70 uppercase">{site.tagline}</p>
           <p className="mt-4 max-w-xs text-sm leading-relaxed">
             Fresh flowers and floral decor for weddings, celebrations and remembrance.
           </p>
@@ -19,7 +21,7 @@ export default function Footer() {
           <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
             {categories.map((c) => (
               <li key={c.slug}>
-                <Link href={`/gallery/${c.slug}`} className="hover:text-gold-light">
+                <Link href={`/gallery/${c.slug}`} className="transition-colors hover:text-gold-light">
                   {c.title}
                 </Link>
               </li>
@@ -29,9 +31,12 @@ export default function Footer() {
 
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-gold">Visit or call</p>
-          <p className="mt-4 text-sm">📍 {site.location}</p>
-          <p className="mt-2 text-sm">
-            📞{" "}
+          <p className="mt-4 flex items-center gap-2 text-sm">
+            <PinIcon className="h-4 w-4 text-gold" />
+            {site.location}
+          </p>
+          <p className="mt-2 flex items-center gap-2 text-sm">
+            <PhoneIcon className="h-4 w-4 text-gold" />
             <a href={`tel:+${site.phoneIntl}`} className="hover:text-gold-light">
               {site.phoneDisplay}
             </a>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Gallery from "@/components/Gallery";
+import { ChevronIcon } from "@/components/Icons";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { categories, getCategory, getImages } from "@/lib/categories";
 import { whatsappLink } from "@/lib/site";
@@ -27,14 +28,21 @@ export default async function CategoryPage({ params }: PageProps<"/gallery/[slug
   const images = getImages(slug);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <Link href="/gallery" className="text-sm text-ink-soft hover:text-rose">
-        ← All collections
-      </Link>
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-ink-soft">
+        <Link href="/gallery" className="hover:text-rose">
+          Gallery
+        </Link>
+        <ChevronIcon className="h-3.5 w-3.5" />
+        <span className="text-ink">{category.title}</span>
+      </nav>
       <div className="mt-4 flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-rose">{category.group}</p>
-          <h1 className="mt-2 font-serif text-5xl font-semibold">{category.title}</h1>
+          <p className="eyebrow">
+            {category.group}
+            {images.length > 0 && <span className="text-ink-soft"> · {images.length} photos</span>}
+          </p>
+          <h1 className="mt-2 font-serif text-4xl font-semibold sm:text-5xl">{category.title}</h1>
           <p className="mt-3 max-w-xl text-ink-soft">{category.blurb}</p>
         </div>
         <a

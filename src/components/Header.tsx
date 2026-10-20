@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import Logo from "./Logo";
 import WhatsAppIcon from "./WhatsAppIcon";
 import { whatsappLink } from "@/lib/site";
 
@@ -20,11 +20,10 @@ export default function Header() {
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
-    <header className="sticky top-0 z-40 bg-ink/95 text-cream backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-rose/20 bg-gradient-to-r from-ink/95 via-ink/95 to-berry/95 text-cream backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <Image src="/logo-mark.png" alt="" width={44} height={44} className="h-11 w-11" priority />
-          <span className="font-serif text-2xl font-semibold tracking-wide text-gold-light">Bobo Blooms</span>
+        <Link href="/" aria-label="Bobo Blooms home" onClick={() => setOpen(false)}>
+          <Logo />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

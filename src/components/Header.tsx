@@ -1,0 +1,93 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import WhatsAppIcon from "./WhatsAppIcon";
+import { whatsappLink } from "@/lib/site";
+
+const nav = [
+  { href: "/", label: "Home" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/contact", label: "Contact" },
+];
+
+export default function Header() {
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
+
+  return (
+    <header className="sticky top-0 z-40 bg-ink/95 text-cream backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+          <Image src="/logo-mark.png" alt="" width={44} height={44} className="h-11 w-11" priority />
+          <span className="font-serif text-2xl font-semibold tracking-wide text-gold-light">Bobo Blooms</span>
+        </Link>
+
+        <nav className="hidden items-center gap-8 md:flex">
+          {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`text-sm uppercase tracking-[0.18em] transition-colors hover:text-gold-light ${
+                isActive(item.href) ? "text-gold-light" : "text-cream/80"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <a
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2 text-sm font-bold text-ink transition-colors hover:bg-gold-light"
+          >
+            <WhatsAppIcon className="h-4 w-4" />
+            Order now
+          </a>
+        </nav>
+
+        <button
+          type="button"
+          className="p-2 md:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          onClick={() => setOpen((o) => !o)}
+        >
+          <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8">
+            {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+          </svg>
+        </button>
+      </div>
+
+      {open && (
+        <nav className="border-t border-cream/10 px-4 pb-4 md:hidden">
+          {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className={`block py-3 text-sm uppercase tracking-[0.18em] ${
+                isActive(item.href) ? "text-gold-light" : "text-cream/80"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <a
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 flex items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-bold text-ink"
+          >
+            <WhatsAppIcon className="h-4 w-4" />
+            Order on WhatsApp
+          </a>
+        </nav>
+      )}
+    </header>
+  );
+}

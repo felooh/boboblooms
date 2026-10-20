@@ -1,26 +1,29 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-ink: #292f32;
+  --color-ink-soft: #3a3d3f;
+  --color-cream: #faf6f0;
+  --color-sand: #f1e9dd;
+  --color-gold: #b8955a;
+  --color-gold-light: #d9c08f;
+  --color-blush: #e7a1b0;
+  --color-rose: #c4506b;
+  --color-sage: #9cbfa7;
+  --color-whatsapp: #1fa855;
 }
 
+/* inline: next/font sets these variables on <body>, not :root */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-lato), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
 }

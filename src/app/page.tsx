@@ -1,103 +1,109 @@
 import Image from "next/image";
+import Link from "next/link";
+import CategoryCard from "@/components/CategoryCard";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
+import { categories } from "@/lib/categories";
+import { site, whatsappLink } from "@/lib/site";
+
+const featured = ["bouquets", "bridal-bouquet", "pedestals", "arch-flowers", "center-pieces", "burial-flowers"];
+
+const steps = [
+  { title: "Browse", text: "Look through our gallery and pick the styles you love." },
+  { title: "Message us", text: "Send a photo or describe what you want on WhatsApp or SMS." },
+  { title: "We create", text: "We confirm the details and price, then make it fresh for you." },
+  { title: "Collect", text: "Pick up at City Market, or ask us about delivery to your event." },
+];
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <>
+      <section className="relative isolate overflow-hidden bg-ink text-cream">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
+          src="/images/hero.jpg"
+          alt=""
+          fill
           priority
+          sizes="100vw"
+          className="-z-10 object-cover opacity-45"
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/70 to-transparent" />
+        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 md:py-36">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold-light">{site.tagline}</p>
+          <h1 className="mt-4 max-w-2xl font-serif text-5xl leading-[1.05] font-semibold md:text-7xl">
+            Every occasion deserves a touch of nature&apos;s elegance.
+          </h1>
+          <p className="mt-6 max-w-xl text-lg text-cream/80">
+            Bouquets, bridal flowers, event decor and sympathy arrangements, hand-made at {site.location}.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 font-bold text-ink transition-colors hover:bg-gold-light"
+            >
+              <WhatsAppIcon />
+              Order on WhatsApp
+            </a>
+            <Link
+              href="/gallery"
+              className="inline-flex items-center rounded-full border border-cream/40 px-7 py-3.5 font-bold transition-colors hover:border-gold-light hover:text-gold-light"
+            >
+              See our work
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-rose">What we do</p>
+            <h2 className="mt-2 font-serif text-4xl font-semibold md:text-5xl">Flowers for every moment</h2>
+          </div>
+          <Link href="/gallery" className="text-sm font-bold text-rose underline-offset-4 hover:underline">
+            View all {categories.length} collections →
+          </Link>
+        </div>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {featured.map((slug) => {
+            const category = categories.find((c) => c.slug === slug)!;
+            return <CategoryCard key={slug} category={category} />;
+          })}
+        </div>
+      </section>
+
+      <section className="bg-sand">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-rose">How to order</p>
+          <h2 className="mt-2 font-serif text-4xl font-semibold md:text-5xl">Simple, personal, fresh</h2>
+          <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map((step, i) => (
+              <li key={step.title} className="rounded-2xl bg-cream p-6">
+                <span className="font-serif text-5xl text-gold">{i + 1}</span>
+                <h3 className="mt-2 text-lg font-bold">{step.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-ink-soft">{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 py-20 text-center sm:px-6">
+        <h2 className="font-serif text-4xl font-semibold md:text-5xl">Planning something special?</h2>
+        <p className="mx-auto mt-4 max-w-xl text-ink-soft">
+          Tell us about your wedding, event or gift and we&apos;ll put together flowers that fit your style and budget.
+        </p>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href={whatsappLink("Hello Bobo Blooms 👋\nI'd like a quote for an event.")}
           target="_blank"
           rel="noopener noreferrer"
+          className="mt-8 inline-flex items-center gap-2 rounded-full bg-whatsapp px-7 py-3.5 font-bold text-white transition-opacity hover:opacity-90"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
+          <WhatsAppIcon />
+          Get a quote
         </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+    </>
   );
 }

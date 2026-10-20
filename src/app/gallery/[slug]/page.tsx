@@ -52,15 +52,23 @@ export default async function CategoryPage({ params }: PageProps<"/gallery/[slug
           <h1 className="mt-2 font-serif text-4xl font-semibold sm:text-5xl">{category.title}</h1>
           <p className="mt-3 max-w-2xl leading-relaxed text-ink-soft">{category.intro}</p>
         </div>
-        <a
-          href={whatsappLink(`Hello Bobo Blooms 👋\nI'm interested in ${category.title.toLowerCase()}.`)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-bold text-white transition-opacity hover:opacity-90"
-        >
-          <WhatsAppIcon />
-          Ask about {category.title.toLowerCase()}
-        </a>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href={`/order?collection=${slug}`}
+            className="inline-flex items-center rounded-full bg-gold px-6 py-3 font-bold text-ink transition-colors hover:bg-gold-light"
+          >
+            Order {category.title.toLowerCase()}
+          </Link>
+          <a
+            href={whatsappLink(`Hello Bobo Blooms 👋\nI'm interested in ${category.title.toLowerCase()}.`)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-bold text-white transition-opacity hover:opacity-90"
+          >
+            <WhatsAppIcon />
+            Ask on WhatsApp
+          </a>
+        </div>
       </div>
 
       {images.length > 0 ? (

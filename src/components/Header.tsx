@@ -4,8 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Logo from "./Logo";
-import WhatsAppIcon from "./WhatsAppIcon";
-import { whatsappLink } from "@/lib/site";
+import { BagIcon } from "./Icons";
 
 const nav = [
   { href: "/", label: "Home" },
@@ -38,15 +37,13 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/order"
             className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2 text-sm font-bold text-ink transition-colors hover:bg-gold-light"
           >
-            <WhatsAppIcon className="h-4 w-4" />
+            <BagIcon className="h-4 w-4" />
             Order now
-          </a>
+          </Link>
         </nav>
 
         <button
@@ -76,15 +73,14 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/order"
+            onClick={() => setOpen(false)}
             className="mt-2 flex items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-bold text-ink"
           >
-            <WhatsAppIcon className="h-4 w-4" />
-            Order on WhatsApp
-          </a>
+            <BagIcon className="h-4 w-4" />
+            Order now
+          </Link>
         </nav>
       )}
     </header>

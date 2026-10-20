@@ -238,6 +238,12 @@ export default function Home() {
               <WhatsAppIcon />
               Get a quote
             </a>
+            <Link
+              href="/order"
+              className="inline-flex items-center rounded-full bg-gold px-7 py-3.5 font-bold text-ink transition-colors hover:bg-gold-light"
+            >
+              Use our order form
+            </Link>
             <a
               href={`tel:+${site.phoneIntl}`}
               className="inline-flex items-center rounded-full border border-cream/40 px-7 py-3.5 font-bold transition-colors hover:border-gold-light hover:text-gold-light"

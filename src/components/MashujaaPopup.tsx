@@ -94,7 +94,7 @@ export default function MashujaaPopup() {
           <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink/30 via-ink/40 to-cream" />
           <div className="flex h-full flex-col items-center justify-end pb-2">
             <span className="flex h-20 w-20 items-center justify-center rounded-full bg-cream shadow-lg ring-4 ring-[#bb0000]/80">
-              <LogoMark className="h-14 w-14" />
+              <LogoMark className="h-11 w-auto" />
             </span>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { whatsappLink } from "@/lib/site";
 export default function NotFound() {
   return (
     <div className="mx-auto flex max-w-xl flex-col items-center px-4 py-24 text-center sm:px-6 md:py-32">
-      <LogoMark className="h-24 w-24 animate-[rise_0.8s_ease-out_both]" />
+      <LogoMark className="h-24 w-auto animate-[rise_0.8s_ease-out_both]" />
       <p className="eyebrow mt-6">Page not found</p>
       <h1 className="mt-2 font-serif text-4xl font-semibold sm:text-5xl">This bloom has wilted</h1>
       <p className="mt-4 leading-relaxed text-ink-soft">

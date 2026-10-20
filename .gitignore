@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# watermarked gallery photos, generated from photos/ by scripts/watermark.mjs
+/public/images/*/
+/public/images/.watermark.json

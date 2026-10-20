@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bobo Blooms
 
-## Getting Started
+Website for Bobo Blooms, florist at City Market, Nairobi. Built with Next.js (App Router) and Tailwind CSS.
 
-First, run the development server:
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Adding or removing photos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Each gallery is a folder in `public/images/<category>/`. Drop `.jpg`, `.png` or `.webp` files in, and they appear on
+that category page, sorted by filename. No code change is needed. Keep photos under about 2000px on the long side.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Category card images: `public/images/covers/<category>.jpg`. If a category has no cover, its first photo is used.
+- Hero image: `public/images/hero.jpg`.
+- Category names and descriptions: `src/lib/categories.ts`. To add a new category, add an entry there and create its folder.
+- Phone number, WhatsApp number, location: `src/lib/site.ts`.
 
-## Learn More
+## Deploy (Vercel)
 
-To learn more about Next.js, take a look at the following resources:
+1. Push this repo to GitHub, then import it at <https://vercel.com/new>. The default settings work.
+2. In the Vercel project, open **Settings → Domains** and add both `boboblooms.org` and `www.boboblooms.org`.
+3. At your domain registrar, update DNS as Vercel instructs (usually an `A` record for `boboblooms.org` and a `CNAME`
+   for `www`). Remove the old Google Sites `ghs.googlehosted.com` records.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Vercel issues HTTPS certificates for both addresses automatically. Old Google Sites URLs such as `/flowers/bouquets` and
+`/contact-us` redirect to their new pages (see `next.config.ts`).
+# boboblooms

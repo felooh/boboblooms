@@ -9,9 +9,10 @@ export default function Footer() {
     <footer className="border-t-4 border-rose bg-ink text-cream/80">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3">
         <div>
-          <Logo />
-          <p className="mt-4 text-xs tracking-[0.25em] text-blush/70 uppercase">{site.tagline}</p>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed">
+          <Link href="/" aria-label="Bobo Blooms home">
+            <Logo stacked />
+          </Link>
+          <p className="mt-6 max-w-xs text-sm leading-relaxed">
             Fresh flowers and floral decor for weddings, celebrations and remembrance.
           </p>
         </div>

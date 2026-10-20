@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Lato } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import MashujaaPopup from "@/components/MashujaaPopup";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <FloatingWhatsApp />
+        <MashujaaPopup />
       </body>
     </html>
   );

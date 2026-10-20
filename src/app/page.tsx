@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import CategoryCard from "@/components/CategoryCard";
+import HeroPetals from "@/components/HeroPetals";
 import { ArrowIcon, BagIcon, FlowerIcon, MessageIcon, SearchIcon } from "@/components/Icons";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { categories, getImages } from "@/lib/categories";
@@ -41,10 +42,11 @@ export default function Home() {
           fill
           priority
           sizes="100vw"
-          className="-z-10 animate-[slow-zoom_20s_ease-out_both] object-cover opacity-60"
+          className="-z-10 animate-[hero-drift_28s_ease-in-out_infinite_alternate] object-cover opacity-60"
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-berry/60 to-rose/10" />
         <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-gradient-to-t from-ink/70 to-transparent" />
+        <HeroPetals />
         <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 md:py-28">
           <p className="animate-[rise_0.8s_ease-out_both] text-xs font-bold tracking-[0.3em] text-gold-light uppercase">
             {site.tagline}

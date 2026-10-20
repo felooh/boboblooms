@@ -53,12 +53,30 @@ body {
   }
 }
 
-@keyframes slow-zoom {
+@keyframes hero-drift {
   from {
-    transform: scale(1.08);
+    transform: scale(1.12) translate(0, 0);
   }
   to {
-    transform: scale(1);
+    transform: scale(1.02) translate(-1.5%, 1%);
+  }
+}
+
+@keyframes petal-fall {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+@keyframes petal-sway {
+  from {
+    transform: translateX(-24px) rotate(-35deg);
+  }
+  to {
+    transform: translateX(24px) rotate(55deg);
   }
 }
 
